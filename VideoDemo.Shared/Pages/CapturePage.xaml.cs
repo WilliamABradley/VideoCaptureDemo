@@ -5,6 +5,7 @@ using VideoDemo.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace VideoDemo.Pages
 {
@@ -22,15 +23,38 @@ namespace VideoDemo.Pages
 
             Viewmodel.CaptureStarted += Viewmodel_CaptureStarted;
             Viewmodel.CaptureCompleted += Viewmodel_CaptureCompleted;
+
+            if (File.Exists(App.VideoOutput))
+            {
+                try
+                {
+                    File.Delete(App.VideoOutput);
+                }
+                catch { }
+            }
         }
 
         /// <summary>
         /// Prepare Page on Navigation, reset on Back Navigation.
         /// </summary>
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             CaptureHandler = App.CurrentCaptureUI;
 
+            Task.Delay(TimeSpan.FromSeconds(4)).ContinueWith(t =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Setup();
+                });
+            });
+
+
+            base.OnAppearing();
+        }
+
+        public async void Setup()
+        {
             if (CaptureHandler != null)
             {
                 // Start the Capture Session.
@@ -46,17 +70,8 @@ namespace VideoDemo.Pages
                 await CaptureHandler.StopRecording();
             }
 
-            // Delete any file if it exists
-            try
-            {
-                File.Delete(App.VideoOutput);
-            }
-            catch { }
-
             // Restarts the Capture Sequence.
             Viewmodel.StartCaptureSequence();
-
-            base.OnAppearing();
         }
 
         private void Viewmodel_CaptureStarted(object sender, EventArgs e)

@@ -4,7 +4,7 @@
              x:Class="VideoDemo.Pages.CapturePage"
              xmlns:controls="clr-namespace:VideoDemo.Controls"
              BackgroundColor="Red">
-    <StackLayout
+    <Grid
         HorizontalOptions="FillAndExpand"
         VerticalOptions="FillAndExpand">
         <controls:CaptureUI x:Name="Capture"
@@ -12,7 +12,8 @@
             VerticalOptions="FillAndExpand" />
         <StackLayout
         HorizontalOptions="Center"
-        VerticalOptions="Center">
+        VerticalOptions="End"
+        Margin="0,50,0,0">
             <Label Text="Demo" />
             <Label Text="{Binding Instruction}" />
             <Label Text ="{Binding Counter}" />
@@ -21,5 +22,5 @@
                 Clicked="FinishRec"
                 IsVisible="{Binding ShowStopButton}" />
         </StackLayout>
-    </StackLayout>
+    </Grid>
 </ContentPage>
