@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoDemo.Pages.CapturePage"
+             xmlns:controls="clr-namespace:VideoDemo.Controls"
+             BackgroundColor="Red">
+    <StackLayout
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <controls:CaptureUI x:Name="Capture"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand" />
+        <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+            <Label Text="Demo" />
+            <Label Text="{Binding Instruction}" />
+            <Label Text ="{Binding Counter}" />
+            <Button
+                Text="Finish"
+                Clicked="FinishRec"
+                IsVisible="{Binding ShowStopButton}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

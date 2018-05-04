@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoDemo.Pages.PlaybackPage"
+             xmlns:player="clr-namespace:Plugin.MediaManager.Forms;assembly=Plugin.MediaManager.Forms"
+             xmlns:controls="clr-namespace:VideoDemo.Controls">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Frame
+        Grid.Row="1"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="#002E3E"
+        CornerRadius="0">
+            <player:VideoView x:Name="Player"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand" />
+        </Frame>
+
+        <Frame x:Name="PlayButtonBorder"
+            Grid.Row="1"
+            CornerRadius="60"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="120"
+            HeightRequest="120"
+            BackgroundColor="DarkGray"
+            Opacity="0.7" />
+
+        <controls:GlyphButton x:Name="PlayButton"
+            Glyph="Play"
+            Grid.Row="1"
+            FontSize="50"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="120"
+            HeightRequest="120"
+            Clicked="Preview" />
+    </Grid>
+</ContentPage>
